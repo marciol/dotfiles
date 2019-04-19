@@ -1,0 +1,13 @@
+.rbenv-vars
+.gems
+tags
+tags.lock
+tags.temp
+.bybug_history
+.byebug_history
+GPATH
+GRTAGS
+GTAGS
+TAGS
+.#*
+.elixir_ls
