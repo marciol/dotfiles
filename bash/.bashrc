@@ -1,3 +1,9 @@
+# Locale
+export LC_ALL=en_US.UTF-8
+
+# direnv
+eval "$(direnv hook bash)"
+
 # Rust Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 

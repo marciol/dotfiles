@@ -1,5 +1,7 @@
 .rbenv-vars
 .gems
+.envrc
+gems
 tags
 tags.lock
 tags.temp
