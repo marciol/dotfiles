@@ -35,6 +35,10 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'majutsushi/tagbar'
 
   Plug 'junegunn/seoul256.vim'
+  Plug 'whatyouhide/vim-gotham'
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'jacoborus/tender.vim'
+  Plug 'erichdongubler/vim-sublime-monokai'
 
   Plug 'tpope/vim-fireplace'
   Plug 'bhurlow/vim-parinfer'
@@ -223,9 +227,23 @@ syntax on
 set background=dark
 " set background=light
 
-let g:seoul256_background = 236
-let g:seoul256_light_background = 256
-colorscheme seoul256
+set termguicolors
+
+" let g:seoul256_background = 236
+" let g:seoul256_light_background = 256
+" colorscheme seoul256
+
+" colorscheme gotham
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \       'transparent_background': 1
+  \     }
+  \   }
+  \ }
+colorscheme PaperColor
+" colorscheme tender
+" colorscheme sublimemonokai
 
 " nvr
 if has('nvim')

@@ -13,3 +13,4 @@ GTAGS
 TAGS
 .#*
 .elixir_ls
+.safe_env.production
