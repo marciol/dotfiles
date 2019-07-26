@@ -30,6 +30,7 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'wsdjeg/vim-fetch'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': { -> coc#util#install() } }
+  Plug 'tommcdo/vim-express'
 
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
@@ -56,6 +57,9 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'danchoi/elinks.vim'
   Plug 'mattn/emmet-vim'
   Plug 'JakeBecker/elixir-ls', { 'do': { -> g:elixirls.compile() } }
+
+  " Tests
+  Plug 'janko/vim-test'
 
 call plug#end()
 
@@ -193,6 +197,13 @@ nmap <Leader>w :Windows<cr>
 " cnoremap <C-f> <Right>
 " cnoremap <M-b> <S-Left>
 " cnoremap <M-f> <S-Right>
+
+" Vim test
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 " emmet
 let g:user_emmet_settings = {
