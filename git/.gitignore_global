@@ -7,6 +7,8 @@ tags.lock
 tags.temp
 .bybug_history
 .byebug_history
+.rubocop
+.solargraph.yml
 GPATH
 GRTAGS
 GTAGS
