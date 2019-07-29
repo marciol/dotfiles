@@ -16,3 +16,7 @@ TAGS
 .#*
 .elixir_ls
 .safe_env.production
+structure.sql
+Gemfile.local
+Gemfile.local.lock
+spring.rb
