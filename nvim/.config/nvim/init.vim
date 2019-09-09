@@ -168,8 +168,8 @@ map <C-b> :Buffers<cr>
 nmap <C-b> :Buffers<cr>
 
 " Fuzzy-find tags
-map <Leader>t :BTags<cr>
-nmap <Leader>t :BTags<cr>
+map <Leader>bt :BTags<cr>
+nmap <Leader>bt :BTags<cr>
 
 " View commits in fzf
 nmap <Leader>c :Commits<cr>
@@ -274,6 +274,9 @@ let g:gutentags_ctags_exclude_wildignore = 1
 
 " set encoding
 :lang en_US.UTF-8
+
+" git blame
+nnoremap <Leader>gb :tabnew term://git blame --date short %<cr>
 
 " copy current filepath and line
 nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
