@@ -42,7 +42,8 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'erichdongubler/vim-sublime-monokai'
 
   Plug 'tpope/vim-fireplace'
-  Plug 'bhurlow/vim-parinfer'
+  " Plug 'bhurlow/vim-parinfer'
+  Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
   Plug 'equalsraf/neovim-gui-shim'
   if !has("gui_vimr")
