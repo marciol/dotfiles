@@ -1,0 +1,15 @@
+{
+  "languageserver": {
+    "elixir": {
+      "command": "/Users/marciol/.local/share/nvim/plugged/elixir-ls/release/language_server.sh",
+      "trace.server": "verbose",
+      "filetypes": ["elixir", "eelixir"],
+      "settings": {
+        "elixirLS": {
+          "dialyzerEnabled": false,
+          "suggestSpecs": false
+        }
+      }
+    }
+  }
+}
