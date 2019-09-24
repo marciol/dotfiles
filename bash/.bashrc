@@ -90,3 +90,4 @@ fi
 # GITHUB
 export GITHUB_TOKEN=35662a410ae5b7804b295e12c2b169c00ac9bfe8
 
+alias chrome=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
