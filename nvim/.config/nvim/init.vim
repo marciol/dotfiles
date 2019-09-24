@@ -41,15 +41,16 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'jacoborus/tender.vim'
   Plug 'erichdongubler/vim-sublime-monokai'
 
-  Plug 'tpope/vim-fireplace'
-  " Plug 'bhurlow/vim-parinfer'
-  Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
-
   Plug 'equalsraf/neovim-gui-shim'
   if !has("gui_vimr")
     Plug 'dzhou121/gonvim-fuzzy'
   endif
   Plug 'kassio/neoterm', { 'tag': '*' }
+
+  " Clojure
+  Plug 'tpope/vim-fireplace'
+  Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+  Plug 'guns/vim-sexp'
 
   " Elixir
   Plug 'mmorearty/elixir-ctags'
@@ -134,6 +135,47 @@ let g:neoterm_automap_keys = ',tt'
 " let g:neoterm_autoinsert = 1
 let g:neoterm_autoscroll = 1
 let g:neoterm_size = 10
+
+lua <<EOF
+function FirstTermOfTabJobId()
+  local t_id = vim.api.nvim_get_current_tabpage()
+  for _, w_id in ipairs(vim.api.nvim_tabpage_list_wins(t_id)) do
+    local b_id = vim.api.nvim_win_get_buf(w_id)
+    if vim.api.nvim_buf_get_option(b_id, 'buftype') == 'terminal' then
+      return b_id, vim.api.nvim_buf_get_var(b_id, 'terminal_job_id')
+    end
+  end
+end
+
+function REPLSend(cmd)
+  local b_id, term_id = FirstTermOfTabJobId()
+  vim.api.nvim_call_function('jobsend', {term_id, cmd..'\n'})
+  local w_id = vim.api.nvim_call_function('bufwinnr', {b_id})
+  vim.api.nvim_command(w_id .. "windo normal! G")
+  vim.api.nvim_command(w_id .. "wincmd p")
+end
+EOF
+
+function! REPLSendForm()
+lua <<EOF
+  vim.api.nvim_command('silent norm vab"ay')
+  local cmd = vim.api.nvim_call_function('getreg', {'a'})
+  REPLSend(cmd)
+EOF
+endfunction
+
+function! REPLSend(cmd)
+  call luaeval('REPLSend(_A)', a:cmd)
+endfunction
+
+" If no visual selection, send safely
+nnoremap <leader>ef :call REPLSendForm()<cr>
+" If there's a visual selection, just send it
+vnoremap <leader>ef "ay:call REPLSend(@a)<cr>
+" Send the entire buffer
+nnoremap <leader>eb :call REPLSend("(load-file \"".expand('%:p')."\")")<cr>
+" Get docs
+nnoremap <leader>doc :call REPLSend("(clojure.repl/doc ".expand("<cword>").")")<cr>
 
 nnoremap <leader>sl :TREPLSendLine<CR>
 vnoremap <leader>sl :TREPLSendSelection<CR>
@@ -244,7 +286,6 @@ set termguicolors
 " let g:seoul256_background = 236
 " let g:seoul256_light_background = 256
 " colorscheme seoul256
-
 " colorscheme gotham
 let g:PaperColor_Theme_Options = {
   \   'theme': {
