@@ -25,7 +25,7 @@ export GOPATH
 PATH=$GOPATH/bin:$PATH
 
 # Ruby
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 alias be="bundle exec"
 
 # VSCode (code)

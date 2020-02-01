@@ -9,10 +9,12 @@ tags.temp
 .byebug_history
 .rubocop
 .solargraph.yml
+.bundle
 GPATH
 GRTAGS
 GTAGS
 TAGS
+tags
 .#*
 .elixir_ls
 .safe_env.production

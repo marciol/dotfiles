@@ -48,9 +48,13 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'kassio/neoterm', { 'tag': '*' }
 
   " Clojure
-  Plug 'tpope/vim-fireplace'
   Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
   Plug 'guns/vim-sexp'
+  Plug 'tpope/vim-sexp-mappings-for-regular-people'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
+  Plug 'tpope/vim-fireplace'
 
   " Elixir
   Plug 'mmorearty/elixir-ctags'
@@ -85,7 +89,24 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+let g:coc_global_extensions = ['coc-conjure']
+let g:conjure_quick_doc_normal_mode = 0
+let g:conjure_quick_doc_insert_mode = 0
+let g:conjure_nmap_doc = "9"
+noremap K :Doc <c-r><c-w><CR>
 
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 let mapleader = ","
 
@@ -242,6 +263,8 @@ nmap <Leader>w :Windows<cr>
 " cnoremap <M-f> <S-Right>
 
 " Vim test
+let test#strategy = 'basic'
+let test#filename_modifier = ':p'
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
@@ -278,8 +301,8 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " syntax off
 syntax on
 
-set background=dark
-" set background=light
+" set background=dark
+set background=light
 
 set termguicolors
 
@@ -321,3 +344,6 @@ nnoremap <Leader>gb :tabnew term://git blame --date short %<cr>
 
 " copy current filepath and line
 nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
+
+let g:neoterm_direct_open_repl = 0
+let g:neoterm_auto_repl_cmd = 1
