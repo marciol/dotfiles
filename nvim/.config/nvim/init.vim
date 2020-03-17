@@ -25,26 +25,14 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-vinegar'
-  Plug 'clinstid/eink.vim'
   Plug 'romainl/vim-qf'
   Plug 'wsdjeg/vim-fetch'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': { -> coc#util#install() } }
   Plug 'tommcdo/vim-express'
-
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
-
-  Plug 'junegunn/seoul256.vim'
-  Plug 'whatyouhide/vim-gotham'
   Plug 'NLKNguyen/papercolor-theme'
-  Plug 'jacoborus/tender.vim'
-  Plug 'erichdongubler/vim-sublime-monokai'
-
-  Plug 'equalsraf/neovim-gui-shim'
-  if !has("gui_vimr")
-    Plug 'dzhou121/gonvim-fuzzy'
-  endif
   Plug 'kassio/neoterm', { 'tag': '*' }
 
   " Clojure
@@ -128,6 +116,7 @@ set mouse=a                 " Set mouse on terminal
 set clipboard=unnamedplus   " Integrate clipboard with yank action
 set splitbelow              " Horizontal split goes below
 set splitright              " Vertical split goes right
+set colorcolumn=80
 
 " jj
 inoremap jj <esc>
@@ -155,7 +144,7 @@ let g:neoterm_default_mod = 'botright'
 let g:neoterm_automap_keys = ',tt'
 " let g:neoterm_autoinsert = 1
 let g:neoterm_autoscroll = 1
-let g:neoterm_size = 10
+let g:neoterm_size = 50
 
 lua <<EOF
 function FirstTermOfTabJobId()
@@ -301,15 +290,11 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " syntax off
 syntax on
 
-" set background=dark
-set background=light
+set background=dark
+" set background=light
 
 set termguicolors
 
-" let g:seoul256_background = 236
-" let g:seoul256_light_background = 256
-" colorscheme seoul256
-" colorscheme gotham
 let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default.dark': {

@@ -4,6 +4,8 @@ then
   source ~/.bashrc
 fi
 
+source ~/.bashrc.local
+
 # Set HOST for ZSH compatibility
 export HOST=$HOSTNAME
 

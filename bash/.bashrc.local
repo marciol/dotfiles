@@ -1,6 +1,10 @@
 # Locale
 export LC_ALL=en_US.UTF-8
 
+# Local bin
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.local/bin
+
 # direnv
 eval "$(direnv hook bash)"
 
@@ -42,7 +46,8 @@ export EDITOR=nvim
 export VIS_PATH=$HOME/vis
 
 # ASDF
-source /usr/local/opt/asdf/asdf.sh
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files'
@@ -60,6 +65,7 @@ fzf_then_open_in_editor() {
 bind -x '"\C-t": fzf_then_open_in_editor'
 
 PATH=$HOME/bin:$PATH
+PATH=$HOME/.local/bin:$PATH
 PATH=$PATH:/usr/local/sbin
 export PATH
 
@@ -67,12 +73,16 @@ export PATH
 BASE16_SHELL=$HOME/.config/base16-shell/
 # [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-  source `brew --prefix`/etc/bash_completion.d/git-completion.bash
+
+# Git autocompletion
+# On Mac install brew and brew install bash-completion@2
+
+if [ -f /usr/local/etc/profile.d/bash-completion.sh ]; then
+  . /usr/local/etc/profile.d/bash-completion.sh
 fi
 
-if [ -f `brew --prefix`/etc/bash_completion.d/git-prompt.sh ]; then
-  source `brew --prefix`/etc/bash_completion.d/git-prompt.sh
+if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+  source /usr/local/etc/bash_completion.d/git-prompt.sh
   GIT_PS1_SHOWDIRTYSTATE=true
 fi
 
