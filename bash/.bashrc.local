@@ -78,7 +78,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # On Mac install brew and brew install bash-completion@2
 
 if [ -f /usr/local/etc/profile.d/bash-completion.sh ]; then
-  . /usr/local/etc/profile.d/bash-completion.sh
+  source /usr/local/etc/profile.d/bash-completion.sh
 fi
 
 if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then

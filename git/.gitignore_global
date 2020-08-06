@@ -22,4 +22,8 @@ structure.sql
 Gemfile.local
 Gemfile.local.lock
 spring.rb
+.conjure.edn
+.rebel_readline_history
 __MACOSX
+.prepl-port
+conjure.log

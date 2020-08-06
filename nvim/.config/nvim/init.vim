@@ -32,8 +32,7 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'tommcdo/vim-express'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'kassio/neoterm', { 'tag': '*' }
+  Plug 'kassio/neoterm'
 
   " Clojure
   Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
@@ -41,8 +40,9 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'tpope/vim-sexp-mappings-for-regular-people'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
-  Plug 'Olical/conjure', { 'tag': 'v2.1.2', 'do': 'bin/compile' }
+  Plug 'Olical/conjure', { 'tag': 'v3.1.1', 'do': 'bin/compile' }
   Plug 'tpope/vim-fireplace'
+  Plug 'venantius/vim-cljfmt'
 
   " Elixir
   Plug 'mmorearty/elixir-ctags'
@@ -55,46 +55,13 @@ call plug#begin("~/.local/share/nvim/plugged")
   " Tests
   Plug 'janko/vim-test'
 
+  " Colors
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'Lokaltog/vim-monotone'
+  Plug 'agudulin/vim-colors-alabaster'
+
 call plug#end()
 
-" Coc completion
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-let g:coc_global_extensions = ['coc-conjure']
-let g:conjure_quick_doc_normal_mode = 0
-let g:conjure_quick_doc_insert_mode = 0
-let g:conjure_nmap_doc = "9"
-noremap K :Doc <c-r><c-w><CR>
-
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 let mapleader = ","
 
@@ -117,11 +84,35 @@ set clipboard=unnamedplus   " Integrate clipboard with yank action
 set splitbelow              " Horizontal split goes below
 set splitright              " Vertical split goes right
 set colorcolumn=80
+:lang en_US.UTF-8
+
 
 " jj
 inoremap jj <esc>
 
-" terminal
+" syntax off
+syntax on
+
+set termguicolors
+
+set background=dark
+" set background=light
+
+
+" let g:PaperColor_Theme_Options = {
+"   \   'theme': {
+"   \     'default.dark': {
+"   \       'transparent_background': 1
+"   \     }
+"   \   }
+"   \ }
+colorscheme Papercolor
+" colorscheme monotone
+
+
+"
+" TERMINAL
+"
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
@@ -140,61 +131,31 @@ nnoremap <A-l> <C-w>l
 " autocmd BufWinEnter,WinEnter term://* startinsert
 " autocmd BufLeave term://* stopinsert
 
-let g:neoterm_default_mod = 'botright'
+let g:neoterm_default_mod = ''
 let g:neoterm_automap_keys = ',tt'
 " let g:neoterm_autoinsert = 1
 let g:neoterm_autoscroll = 1
-let g:neoterm_size = 50
+let g:neoterm_size = ''
+let g:neoterm_direct_open_repl = 0
+let g:neoterm_auto_repl_cmd = 0
 
-lua <<EOF
-function FirstTermOfTabJobId()
-  local t_id = vim.api.nvim_get_current_tabpage()
-  for _, w_id in ipairs(vim.api.nvim_tabpage_list_wins(t_id)) do
-    local b_id = vim.api.nvim_win_get_buf(w_id)
-    if vim.api.nvim_buf_get_option(b_id, 'buftype') == 'terminal' then
-      return b_id, vim.api.nvim_buf_get_var(b_id, 'terminal_job_id')
-    end
-  end
-end
-
-function REPLSend(cmd)
-  local b_id, term_id = FirstTermOfTabJobId()
-  vim.api.nvim_call_function('jobsend', {term_id, cmd..'\n'})
-  local w_id = vim.api.nvim_call_function('bufwinnr', {b_id})
-  vim.api.nvim_command(w_id .. "windo normal! G")
-  vim.api.nvim_command(w_id .. "wincmd p")
-end
-EOF
-
-function! REPLSendForm()
-lua <<EOF
-  vim.api.nvim_command('silent norm vab"ay')
-  local cmd = vim.api.nvim_call_function('getreg', {'a'})
-  REPLSend(cmd)
-EOF
-endfunction
-
-function! REPLSend(cmd)
-  call luaeval('REPLSend(_A)', a:cmd)
-endfunction
-
-" If no visual selection, send safely
-nnoremap <leader>ef :call REPLSendForm()<cr>
-" If there's a visual selection, just send it
-vnoremap <leader>ef "ay:call REPLSend(@a)<cr>
-" Send the entire buffer
-nnoremap <leader>eb :call REPLSend("(load-file \"".expand('%:p')."\")")<cr>
-" Get docs
-nnoremap <leader>doc :call REPLSend("(clojure.repl/doc ".expand("<cword>").")")<cr>
-
-nnoremap <leader>sl :TREPLSendLine<CR>
-vnoremap <leader>sl :TREPLSendSelection<CR>
+nnoremap <localleader>sl :TREPLSendLine<CR>
+vnoremap <localleader>sl :TREPLSendSelection<CR>
 nnoremap <F12> :Ttoggle<CR>
 inoremap <F12> <esc>:Ttoggle<CR>
 tnoremap <F12> <C-\><C-n>:Ttoggle<CR>
 " tnoremap <esc> <C-\><C-n>
 
-" Fuzzy Finder
+" nvr
+if has('nvim')
+  let $VISUAL = 'nvr -cc split --remote-wait-silent'
+endif
+cnoreabbrev qq w<bar>bd
+
+
+"
+" FZF
+"
 let $FZF_DEFAULT_OPTS .= ' --no-height'
 let $FZF_DEFAULT_OPTS .= ' --bind ctrl-a:select-all'
 
@@ -236,11 +197,21 @@ nmap <Leader>w :Windows<cr>
 :nnoremap <Leader>kd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 
 
-" tags
+"
+" TAGS
+"
 " command! -bang -nargs=* JTags call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})
 " :nnoremap <C-]> :JTags ^<c-r><c-w><cr>
 :nnoremap <C-]> g<C-]>
 
+" gutentags
+set wildignore+=node_modules/*
+let g:gutentags_ctags_exclude_wildignore = 1
+
+
+"
+" COMMAND MODE
+"
 " command mode
 " cnoremap <C-a> <Home>
 " cnoremap <C-e> <End>
@@ -251,33 +222,62 @@ nmap <Leader>w :Windows<cr>
 " cnoremap <M-b> <S-Left>
 " cnoremap <M-f> <S-Right>
 
-" Vim test
+
+"
+" VIM TEST
+"
 let test#strategy = 'basic'
 let test#filename_modifier = ':p'
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+nmap <silent> <localleader>t :TestNearest<CR>
+nmap <silent> <localleader>T :TestFile<CR>
+nmap <silent> <localleader>a :TestSuite<CR>
+nmap <silent> <localleader>l :TestLast<CR>
+nmap <silent> <localleader>g :TestVisit<CR>
 
-" emmet
-let g:user_emmet_settings = {
-\  "eelixir": {
-\    "extends": "html",
-\    "snippets": {
-\      "eexbe": "<%= | %>\n\t${child}<% end %>",
-\      "eexb": "<% | %>\n\t${child}<% end %>",
-\      "eexa": "<%= | %>"
-\    }
-\  },
-\  "eruby": {
-\    "extends": "html",
-\    "snippets": {
-\      "erb": "<%= | %>\n\t${child}<% end %>"
-\    }
-\  }
-\}
 
+"
+" COC COMPLETION
+"
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+let g:coc_global_extensions = ['coc-conjure']
+
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+let $NVIM_COC_LOG_LEVEL = 'debug'
+
+
+"
+" UTILS
+"
 function! NumberToggle()
   if(&relativenumber == 1)
     set nornu
@@ -287,42 +287,10 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
-" syntax off
-syntax on
-
-set background=dark
-" set background=light
-
-set termguicolors
-
-let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default.dark': {
-  \       'transparent_background': 1
-  \     }
-  \   }
-  \ }
-colorscheme PaperColor
-" colorscheme tender
-" colorscheme sublimemonokai
-
-" nvr
-if has('nvim')
-  let $VISUAL = 'nvr -cc split --remote-wait-silent'
-endif
-cnoreabbrev qq w<bar>bd
-
 autocmd BufWritePre * %s/\s\+$//e
 
 " elixir
 let g:mix_format_on_save = 1
-
-" gutentags
-set wildignore+=node_modules/*
-let g:gutentags_ctags_exclude_wildignore = 1
-
-" set encoding
-:lang en_US.UTF-8
 
 " git blame
 nnoremap <Leader>gb :tabnew term://git blame --date short %<cr>
@@ -330,5 +298,8 @@ nnoremap <Leader>gb :tabnew term://git blame --date short %<cr>
 " copy current filepath and line
 nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
 
-let g:neoterm_direct_open_repl = 0
-let g:neoterm_auto_repl_cmd = 1
+noremap K :Doc <c-r><c-w><CR>
+
+" Clojure
+" autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
+" autocmd Syntax clojure EnableSyntaxExtension
