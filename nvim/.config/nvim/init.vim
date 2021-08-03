@@ -40,8 +40,6 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'tpope/vim-sexp-mappings-for-regular-people'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
-  Plug 'Olical/conjure', { 'tag': 'v3.1.1', 'do': 'bin/compile' }
-  Plug 'tpope/vim-fireplace'
   Plug 'venantius/vim-cljfmt'
 
   " Elixir
@@ -54,6 +52,7 @@ call plug#begin("~/.local/share/nvim/plugged")
 
   " Tests
   Plug 'janko/vim-test'
+  Plug 'powerman/vim-plugin-AnsiEsc'
 
   " Colors
   Plug 'NLKNguyen/papercolor-theme'
@@ -64,6 +63,7 @@ call plug#end()
 
 
 let mapleader = ","
+let maplocalleader = ","
 
 let g:python2_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -139,7 +139,68 @@ let g:neoterm_size = ''
 let g:neoterm_direct_open_repl = 0
 let g:neoterm_auto_repl_cmd = 0
 
-nnoremap <localleader>sl :TREPLSendLine<CR>
+lua <<EOF
+function FirstTermOfTabJobId()
+  local t_id = vim.api.nvim_get_current_tabpage()
+  for _, w_id in ipairs(vim.api.nvim_tabpage_list_wins(t_id)) do
+    local b_id = vim.api.nvim_win_get_buf(w_id)
+    if vim.api.nvim_buf_get_option(b_id, 'buftype') == 'terminal' then
+      return b_id, vim.api.nvim_buf_get_var(b_id, 'terminal_job_id')
+    end
+  end
+end
+
+function REPLSend(cmd)
+  local b_id, term_id = FirstTermOfTabJobId()
+  vim.api.nvim_call_function('jobsend', {term_id, cmd..'\n'})
+  local w_id = vim.api.nvim_call_function('bufwinnr', {b_id})
+  vim.api.nvim_command(w_id .. "windo normal! G")
+  vim.api.nvim_command(w_id .. "wincmd p")
+end
+EOF
+
+function! REPLSendForm()
+let save_pos = getpos(".")
+lua <<EOF
+  vim.api.nvim_command('silent norm vab"ay')
+  local cmd = vim.api.nvim_call_function('getreg', {'a'})
+  REPLSend(cmd)
+EOF
+call setpos(".", save_pos)
+endfunction
+
+function! REPLSendForm()
+lua <<EOF
+  vim.api.nvim_command('silent norm vaf"ay')
+  local cmd = vim.api.nvim_call_function('getreg', {'a'})
+  REPLSend(cmd)
+EOF
+endfunction
+
+function! REPLSendTopForm()
+lua <<EOF
+  vim.api.nvim_command('silent norm vaF"ay')
+  local cmd = vim.api.nvim_call_function('getreg', {'a'})
+  REPLSend(cmd)
+EOF
+endfunction
+
+function! REPLSend(cmd)
+  call luaeval('REPLSend(_A)', a:cmd)
+endfunction
+
+" If no visual selection, send safely
+nnoremap <localleader>f :call REPLSendForm()<cr>
+" If no visual selection, send safely the Top form
+nnoremap <localleader>F :call REPLSendTopForm()<cr>
+" If there's a visual selection, just send it
+vnoremap <localleader>f "ay:call REPLSend(@a)<cr>
+" Send the entire buffer
+nnoremap <localleader>b :call REPLSend("(clojure.core/load-file \"".expand('%:p')."\")")<cr>
+" Get docs
+nnoremap <localleader>d :call REPLSend("(clojure.repl/doc ".expand("<cword>").")")<cr>
+
+vnoremap <localleader>sl :TREPLSendLine<CR>
 vnoremap <localleader>sl :TREPLSendSelection<CR>
 nnoremap <F12> :Ttoggle<CR>
 inoremap <F12> <esc>:Ttoggle<CR>
@@ -208,7 +269,6 @@ nmap <Leader>w :Windows<cr>
 set wildignore+=node_modules/*
 let g:gutentags_ctags_exclude_wildignore = 1
 
-
 "
 " COMMAND MODE
 "
@@ -230,9 +290,10 @@ let test#strategy = 'basic'
 let test#filename_modifier = ':p'
 nmap <silent> <localleader>t :TestNearest<CR>
 nmap <silent> <localleader>T :TestFile<CR>
-nmap <silent> <localleader>a :TestSuite<CR>
-nmap <silent> <localleader>l :TestLast<CR>
-nmap <silent> <localleader>g :TestVisit<CR>
+nmap <silent> <localleader>ta :TestSuite<CR>
+nmap <silent> <localleader>tl :TestLast<CR>
+nmap <silent> <localleader>tg :TestVisit<CR>
+autocmd BufWinEnter quickfix AnsiEsc
 
 
 "
@@ -257,7 +318,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-let g:coc_global_extensions = ['coc-conjure']
 
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -299,7 +359,3 @@ nnoremap <Leader>gb :tabnew term://git blame --date short %<cr>
 nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
 
 noremap K :Doc <c-r><c-w><CR>
-
-" Clojure
-" autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
-" autocmd Syntax clojure EnableSyntaxExtension

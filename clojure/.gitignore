@@ -1,1 +1,3 @@
 .cpcache
+.lein/repl-history
+.lein/repl-port

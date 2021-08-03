@@ -44,15 +44,45 @@
   ;;   "clojars" {:url "https://repo.clojars.org/"}
   ;; }
   ;;
-  :aliases {:new {:extra-deps {seancorfield/clj-new
-                               {:mvn/version "0.7.7"}}
-                  :main-opts ["-m" "clj-new.create"]}
-            :cljfmt {:extra-deps {cljfmt {:mvn/version "0.6.4"}}}
+  :aliases {:new
+            {:extra-deps {seancorfield/clj-new
+                          {:mvn/version "0.7.7"}}
+             :main-opts ["-m" "clj-new.create"]}
 
-            :socket {:jvm-opts ["-Dclojure.server.repl={:port,50505,:accept,clojure.core.server/repl}"]}
-            :cljs-socket {:jvm-opts ["-Dclojure.server.repl={:port,50506,:accept,cljs.server.node/repl}"]
-                          :main-opts ["-m" "cljs.main"]}
-            :nrepl {:extra-deps {nrepl {:mvn/version "RELEASE"}}
-                    :main-opts ["-m" "nrepl.cmdline"]}}}
+            :user
+            {:extra-deps {org.clojure/java.classpath {:mvn/version "1.0.0"}}
+             :extra-paths ["/Users/marcio.faria/.clojure" "dev"]}
+
+            :cljfmt
+            {:extra-deps {cljfmt {:mvn/version "0.6.4"}}}
+
+            :socket
+            {:jvm-opts ["-Dclojure.server.repl={:port,50505,:accept,clojure.core.server/repl}"]}
+
+            :cljs-socket
+            {:jvm-opts ["-Dclojure.server.repl={:port,50506,:accept,cljs.server.node/repl}"]
+             :main-opts ["-m" "cljs.main"]}
+
+            :rebel
+            {:extra-deps {com.bhauman/rebel-readline {:mvn/version "RELEASE"}}
+             :main-opts ["-m" "rebel-readline.main"]}
+
+            :nrepl
+            {:extra-deps {nrepl {:mvn/version "RELEASE"}}
+             :main-opts ["-m" "nrepl.cmdline"]}
+
+            :nrepl-cider
+            {:extra-deps {nrepl
+                          {:mvn/version "RELEASE"}
+                          cider/cider-nrepl
+                          {:mvn/version "0.21.1"}}
+             :main-opts ["-m" "nrepl.cmdline" "--middleware" "[cider.nrepl/cider-middleware]"]}
+
+            :add-libs
+            {:extra-deps {org.clojure/tools.deps.alpha
+                          {:git/url "https://github.com/clojure/tools.deps.alpha"
+                           :sha "d77476f3d5f624249462e275ae62d26da89f320b"}}}}}
+
+
 
 
