@@ -28,7 +28,7 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'romainl/vim-qf'
   Plug 'wsdjeg/vim-fetch'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': { -> coc#util#install() } }
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'tommcdo/vim-express'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
