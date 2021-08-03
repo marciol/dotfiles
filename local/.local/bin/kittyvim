@@ -1,0 +1,2 @@
+osascript -e 'on run argv' -e "do shell script \"/Applications/Kitty.app/Contents/MacOS/kitty @ --to=$KITTY_LISTEN_ON launch --type=tab nvim $1 $2 $3 $4 $5\"" -e 'end run' > /dev/null
+
