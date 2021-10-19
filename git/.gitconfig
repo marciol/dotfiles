@@ -1,4 +1,4 @@
 [core]
-	excludesfile = /Users/marcio.faria/.gitignore_global
+	excludesfile = /Users/marciol/.gitignore_global
 [pull]
 	rebase = true

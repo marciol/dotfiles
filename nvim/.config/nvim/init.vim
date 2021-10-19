@@ -21,6 +21,12 @@ function! g:elixirls.compile(...)
   echom '>>> elixirls compiled'
 endfunction
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin("~/.local/share/nvim/plugged")
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -41,6 +47,7 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'venantius/vim-cljfmt'
+  Plug 'Olical/conjure', {'tag': 'v4.25.0'}
 
   " Elixir
   Plug 'mmorearty/elixir-ctags'

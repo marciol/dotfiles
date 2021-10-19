@@ -5,13 +5,9 @@ A repository with my personal configuration files. Managed using GNU
 
 ## How to use
 
-Clone this repository (including submodules) in `~/.dotfiles` directory, e.g.:
 
-    $ git clone --recursive https://github.com/marciol/dotfiles ~/.dotfiles
-
-Use `stow` to manage symlinks, e.g.:
-
-    $ cd ~/.dotfiles
-    $ stow .
+```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/marciol/dotfiles/HEAD/install.sh)"
+```
 
 [stow]: https://www.gnu.org/software/stow/

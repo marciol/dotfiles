@@ -27,3 +27,4 @@ spring.rb
 __MACOSX
 .prepl-port
 conjure.log
+.DS_Store
