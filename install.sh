@@ -7,7 +7,7 @@ xcode-select --install
 # Homebrew
 echo "Installing homebrew and common packages"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install git nvim stow gnupg fd ctags
+brew install git nvim stow gnupg fd ctags libpq
 
 # Git
 echo "Installing git"
@@ -55,6 +55,7 @@ asdf install
 # Clojure
 echo "Installing clojure"
 brew install clojure/tools/clojure
+brew install clojure-lsp/brew/clojure-lsp-native
 
 # Kitty
 echo "Installing kitty"

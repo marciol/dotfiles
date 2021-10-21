@@ -12,6 +12,9 @@ eval "$(direnv hook bash)"
 export PATH="$HOME/.cargo/bin:$PATH"
 source $HOME/.cargo/env
 
+# Postgresql
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
 # PHP
 export PATH=$PATH:$HOME/.composer/vendor/bin
 
