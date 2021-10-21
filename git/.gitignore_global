@@ -28,3 +28,4 @@ __MACOSX
 .prepl-port
 conjure.log
 .DS_Store
+.lsp/
