@@ -68,9 +68,3 @@ bell_on_tab          yes
 
 allow_remote_control yes
 listen_on unix:/tmp/mykitty
-
-
-# BEGIN_KITTY_THEME
-# PaperColor Light
-include current-theme.conf
-# END_KITTY_THEME

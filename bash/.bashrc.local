@@ -81,6 +81,7 @@ export PATH
 # Bash
 BASE16_SHELL=$HOME/.config/base16-shell/
 # [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
 # Clojerl
 alias rebar3-clojerl="rlwrap -r -q '\"' -b '(){}[],^%#@\";:''' rebar3 clojerl"
@@ -100,7 +101,9 @@ fi
 set -o vi
 bind '"jj":vi-movement-mode'
 
-if [[ -z "$SSH_CLIENT" ]]; then
+if [[ -n $AWS_VAULT ]]; then
+    export PS1="\w\$(__git_ps1) AWS[$AWS_VAULT] \\$ "
+elif [[ -z "$SSH_CLIENT" ]]; then
     # local connection, change prompt
     export PS1="\w\$(__git_ps1) \\$ "
 else
@@ -109,6 +112,23 @@ else
 fi
 
 # GITHUB
-export GITHUB_TOKEN=35662a410ae5b7804b295e12c2b169c00ac9bfe8
-
+# export GITHUB_TOKEN=35662a410ae5b7804b295e12c2b169c00ac9bfe8
 alias chrome=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+
+# kitty ssh
+alias ssh="kitty +kitten ssh"
+
+# AWS Helpers
+
+# Set a particular AWS rule with AWS SSO.
+# Arguments:
+#   The AWS alias for the role you want to assume.
+function aws-role-sh() {
+	aws-vault exec $1 -- bash
+}
+
+# Ensure that the right permissions for various AWS roles are present.
+alias terraform-sh="aws-role-sh terraform-testing"
+alias sandbox-sh="aws-role-sh sandbox"
+alias staging-sh="aws-role-sh staging"
+alias testing-sh="aws-role-sh testing"

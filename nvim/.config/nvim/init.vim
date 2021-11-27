@@ -41,7 +41,10 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'kassio/neoterm'
 
   " Clojure
-  Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+  " Plug 'gpanders/nvim-parinfer'
+  " Plug 'bhurlow/vim-parinfer'
+  Plug 'eraserhd/parinfer-rust', {'do':
+        \  'cargo build --release'}
   Plug 'guns/vim-sexp'
   Plug 'tpope/vim-sexp-mappings-for-regular-people'
   Plug 'tpope/vim-repeat'
@@ -63,8 +66,6 @@ call plug#begin("~/.local/share/nvim/plugged")
 
   " Colors
   Plug 'NLKNguyen/papercolor-theme'
-  Plug 'Lokaltog/vim-monotone'
-  Plug 'agudulin/vim-colors-alabaster'
 
 call plug#end()
 
@@ -102,8 +103,8 @@ syntax on
 
 set termguicolors
 
-set background=dark
-" set background=light
+" set background=dark
+set background=light
 
 
 " let g:PaperColor_Theme_Options = {
@@ -114,7 +115,6 @@ set background=dark
 "   \   }
 "   \ }
 colorscheme Papercolor
-" colorscheme monotone
 
 
 "
@@ -145,6 +145,9 @@ let g:neoterm_autoscroll = 1
 let g:neoterm_size = ''
 let g:neoterm_direct_open_repl = 0
 let g:neoterm_auto_repl_cmd = 0
+
+
+" Clojure
 
 lua <<EOF
 function FirstTermOfTabJobId()
@@ -203,9 +206,11 @@ nnoremap <localleader>F :call REPLSendTopForm()<cr>
 " If there's a visual selection, just send it
 vnoremap <localleader>f "ay:call REPLSend(@a)<cr>
 " Send the entire buffer
-nnoremap <localleader>b :call REPLSend("(clojure.core/load-file \"".expand('%:p')."\")")<cr>
+" nnoremap <localleader>b :call REPLSend("(clojure.core/load-file \"".expand('%:p')."\")")<cr>
 " Get docs
-nnoremap <localleader>d :call REPLSend("(clojure.repl/doc ".expand("<cword>").")")<cr>
+" nnoremap <localleader>d :call REPLSend("(clojure.repl/doc ".expand("<cword>").")")<cr>
+let g:conjure#mapping#doc_word = ["<localleader>d"]
+
 
 vnoremap <localleader>sl :TREPLSendLine<CR>
 vnoremap <localleader>sl :TREPLSendSelection<CR>
@@ -339,7 +344,22 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+inoremap Tab <Plug>(parinfer-tab)
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
 let $NVIM_COC_LOG_LEVEL = 'debug'
+let g:coc_default_semantic_highlight_groups = 1
 
 
 "
@@ -364,5 +384,3 @@ nnoremap <Leader>gb :tabnew term://git blame --date short %<cr>
 
 " copy current filepath and line
 nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
-
-noremap K :Doc <c-r><c-w><CR>

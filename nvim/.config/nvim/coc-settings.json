@@ -1,4 +1,5 @@
 {
+  "coc.preferences.semanticTokensHighlights": true,
   "languageserver": {
     "elixir": {
       "command": "/Users/marciol/.local/share/nvim/plugged/elixir-ls/release/language_server.sh",

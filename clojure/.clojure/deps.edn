@@ -45,13 +45,14 @@
   ;; }
   ;;
   :aliases {:new
-            {:extra-deps {seancorfield/clj-new
-                          {:mvn/version "0.7.7"}}
-             :main-opts ["-m" "clj-new.create"]}
+            {:extra-deps {com.github.seancorfield/clj-new
+                          {:mvn/version "1.2.362"}}
+             :exec-fn clj-new/create
+             :ex:exec-args {:template "app"}}
 
             :user
             {:extra-deps {org.clojure/java.classpath {:mvn/version "1.0.0"}}
-             :extra-paths ["/Users/marcio.faria/.clojure" "dev"]}
+             :extra-paths ["/Users/marciol/.clojure" "dev"]}
 
             :cljfmt
             {:extra-deps {cljfmt {:mvn/version "0.6.4"}}}
@@ -77,6 +78,12 @@
                           cider/cider-nrepl
                           {:mvn/version "0.21.1"}}
              :main-opts ["-m" "nrepl.cmdline" "--middleware" "[cider.nrepl/cider-middleware]"]}
+
+            :runner
+            {:extra-deps {io.github.cognitect-labs/test-runner
+                          {:git/tag "v0.5.0" :git/sha "48c3c67"}}
+             :exec-fn cognitect.test-runner.api/test
+             :exec-args {:dirs ["test" "src/test/clojure"]}}
 
             :add-libs
             {:extra-deps {org.clojure/tools.deps.alpha
