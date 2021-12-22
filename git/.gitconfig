@@ -2,3 +2,5 @@
 	excludesfile = /Users/marciol/.gitignore_global
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
