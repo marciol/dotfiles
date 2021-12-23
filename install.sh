@@ -7,6 +7,7 @@ xcode-select --install
 # Homebrew
 echo "Installing homebrew and stow"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew install stow
 
 # Stow
