@@ -8,7 +8,13 @@ xcode-select --install
 echo "Installing homebrew and stow"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-brew install stow
+brew install stow git
+
+# Dotfiles
+echo "Installing the dotfiles"
+git clone git@github.com:marciol/dotfiles.git $HOME/.dotfiles
+
+pushd $HOME/.dotfiles
 
 # Stow
 echo "Initializing stow"
@@ -22,6 +28,8 @@ stow ruby
 stow ssh
 stow tags
 stow brew
+
+popd
 
 # Brewbundle
 echo "Brew bundle ..."
