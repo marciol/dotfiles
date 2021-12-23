@@ -47,6 +47,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Asdf
 echo "Installing asdf"
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+source $HOME/.asdf/asdf.sh
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
 asdf plugin-add lein https://github.com/miorimmax/asdf-lein.git
