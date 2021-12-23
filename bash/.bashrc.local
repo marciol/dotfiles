@@ -6,8 +6,12 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # brew
-BREW_PATH=`which brew`
-eval "$($BREW_PATH shellenv)"
+arch_name = "$(uname -m)"
+if [ "$arch_name" = "arm64" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # direnv
 eval "$(direnv hook bash)"
