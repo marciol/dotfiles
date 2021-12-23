@@ -38,11 +38,11 @@ curl -sfL https://direnv.net/install.sh | bash
 # Fzf
 echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --key-bindings --completion --no-update-rc
 
 # Rust
 echo "Installing rust"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh --profile default
 
 # Asdf
 echo "Installing asdf"
