@@ -26,7 +26,6 @@ stow local
 stow nvim
 stow ruby
 stow ssh
-stow tags
 stow brew
 
 popd
