@@ -15,6 +15,7 @@ A repository with my personal configuration files. Managed using GNU
     ```
 3. [Add a new SSH Key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
+4. Init the installation:
 
     ```shell
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/marciol/dotfiles/HEAD/install.sh)"
