@@ -18,6 +18,7 @@ pushd $HOME/.dotfiles
 
 # Stow
 echo "Initializing stow"
+stow bash
 stow clojure
 stow ctags
 stow git
@@ -45,7 +46,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Rust
 echo "Installing rust"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh --profile default
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
 
 # Asdf
 echo "Installing asdf"
