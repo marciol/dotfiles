@@ -5,16 +5,12 @@ echo "Installing xcode tools"
 xcode-select --install
 
 # Homebrew
-echo "Installing homebrew and common packages"
+echo "Installing homebrew and stow"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install git nvim stow gnupg fd ctags libpq
-
-# Git
-echo "Installing git"
-git config --global core.excludesfile ~/.gitignore_global
+brew install stow
 
 # Stow
-echo "Installing stow"
+echo "Initializing stow"
 stow clojure
 stow ctags
 stow git
@@ -24,6 +20,16 @@ stow nvim
 stow ruby
 stow ssh
 stow tags
+stow brew
+
+# Brewbundle
+echo "Brew bundle ..."
+brew bundle
+
+# Git
+echo "Installing git"
+git config --global core.excludesfile ~/.gitignore_global
+
 
 # Direnv
 echo "Installing direnv"
