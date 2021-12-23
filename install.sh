@@ -19,6 +19,7 @@ pushd $HOME/.dotfiles
 # Stow
 echo "Initializing stow"
 stow bash
+stow asdf
 stow clojure
 stow ctags
 stow git
