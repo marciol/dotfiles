@@ -52,6 +52,10 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 echo "Installing rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
+# Brewbundle
+echo "Brew bundle ..."
+brew bundle
+
 # Asdf
 echo "Installing asdf"
 [ ! -d $HOME/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
@@ -67,17 +71,5 @@ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin-add clojerl https://github.com/clojerl/asdf-clojerl.git
 asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
 asdf plugin-add terragrunt https://github.com/lotia/asdf-terragrunt
+asdf plugin-add https://github.com/MetricMike/asdf-awscli.git
 asdf install
-
-# Brewbundle
-echo "Brew bundle ..."
-brew bundle
-
-# # Clojure
-# echo "Installing clojure"
-# brew install clojure/tools/clojure
-# brew install clojure-lsp/brew/clojure-lsp-native
-#
-# # Kitty
-# echo "Installing kitty"
-# brew install --cask kitty

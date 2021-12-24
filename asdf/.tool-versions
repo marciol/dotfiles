@@ -2,6 +2,7 @@ nodejs 16.13.1
 java openjdk-17.0.1
 lein 2.9.1
 yarn 1.22.17
+awscli latest
 # terraform 1.0.11
 # terragrunt 0.35.8
 # terraform 0.11.15
