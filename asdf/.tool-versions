@@ -1,5 +1,5 @@
 nodejs 12.16.1
-java semeru-openj9-11.0.12+7_openj9-0.27.0
+java openjdk-17.0.1
 lein 2.9.1
 yarn 1.22.17
 # terraform 1.0.11
