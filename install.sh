@@ -65,6 +65,8 @@ asdf plugin-add rebar https://github.com/Stratus3D/asdf-rebar.git
 asdf plugin-add lfe https://github.com/vic/asdf-lfe.git
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin-add clojerl https://github.com/clojerl/asdf-clojerl.git
+asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+asdf plugin-add terragrunt https://github.com/lotia/asdf-terragrunt
 asdf install
 
 # Brewbundle
