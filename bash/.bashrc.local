@@ -71,6 +71,12 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_COMMAND='fd --type f'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#4d4d4c,bg:#eeeeee,hl:#d7005f
+    --color=fg+:#4d4d4c,bg+:#e8e8e8,hl+:#d7005f
+    --color=info:#4271ae,prompt:#8959a8,pointer:#d7005f
+    --color=marker:#4271ae,spinner:#4271ae,header:#4271ae'
+
 fzf_then_open_in_editor() {
   local file=$(fzf-tmux)
   # Open the file if it exists
@@ -120,6 +126,9 @@ alias chrome=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 
 # kitty ssh
 alias ssh="kitty +kitten ssh"
+
+# JAVA_HOME
+. ~/.asdf/plugins/java/set-java-home.bash
 
 # AWS Helpers
 

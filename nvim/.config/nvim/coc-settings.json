@@ -1,5 +1,5 @@
 {
-  "coc.preferences.semanticTokensHighlights": true,
+  "semanticTokens.enable": true,
   "languageserver": {
     "elixir": {
       "command": "/Users/marciol/.local/share/nvim/plugged/elixir-ls/release/language_server.sh",
@@ -23,6 +23,10 @@
         "project-specs": [{
           "project-path": "deps.edn",
           "classpath-cmd": ["clj", "-Spath"]
+        },
+        {
+          "project-path": "project.clj",
+          "classpath-cmd": ["lein", "classpath"]
         }],
         "use-metadata-for-privacy?": true,
         "ignore-classpath-directories": true

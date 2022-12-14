@@ -39,18 +39,18 @@ call plug#begin("~/.local/share/nvim/plugged")
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
   Plug 'kassio/neoterm'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   " Clojure
   " Plug 'gpanders/nvim-parinfer'
   " Plug 'bhurlow/vim-parinfer'
   Plug 'eraserhd/parinfer-rust', {'do':
-        \  'cargo build --release'}
+       \  'cargo build --release'}
   Plug 'guns/vim-sexp'
   Plug 'tpope/vim-sexp-mappings-for-regular-people'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
-  Plug 'venantius/vim-cljfmt'
-  Plug 'Olical/conjure', {'tag': 'v4.25.0'}
+  Plug 'Olical/conjure'
 
   " Elixir
   Plug 'mmorearty/elixir-ctags'
@@ -66,6 +66,9 @@ call plug#begin("~/.local/share/nvim/plugged")
 
   " Colors
   Plug 'NLKNguyen/papercolor-theme'
+
+  " Terraform
+  Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
@@ -116,7 +119,6 @@ set background=light
 "   \ }
 colorscheme Papercolor
 
-
 "
 " TERMINAL
 "
@@ -145,6 +147,26 @@ let g:neoterm_autoscroll = 1
 let g:neoterm_size = ''
 let g:neoterm_direct_open_repl = 0
 let g:neoterm_auto_repl_cmd = 0
+
+" Tree-sitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+
+  ensure_installed = { "clojure", "typescript" },
+  sync_install = false,
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = true,
+  },
+}
+EOF
 
 
 " Clojure
@@ -210,6 +232,7 @@ vnoremap <localleader>f "ay:call REPLSend(@a)<cr>
 " Get docs
 " nnoremap <localleader>d :call REPLSend("(clojure.repl/doc ".expand("<cword>").")")<cr>
 let g:conjure#mapping#doc_word = ["<localleader>d"]
+let g:conjure#eval#result_register = "*"
 
 
 vnoremap <localleader>sl :TREPLSendLine<CR>
@@ -243,7 +266,7 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 command! -bang -nargs=? -complete=dir Buffers
-  \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview(), <bang>0)
+ \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " Fuzzy-find files with fzf
 map <C-p> :Files<cr>
@@ -260,9 +283,9 @@ nmap <Leader>bt :BTags<cr>
 " View commits in fzf
 nmap <Leader>c :Commits<cr>
 
-" Fuzzy-find tags
-map <Leader>w :Windows<cr>
-nmap <Leader>w :Windows<cr>
+" Fuzzy-find tabs
+map <Leader>e :Windows<cr>
+nmap <Leader>e :Windows<cr>
 
 " Quotation
 :nnoremap <Leader>dk ciw""<Esc>P
@@ -313,16 +336,16 @@ autocmd BufWinEnter quickfix AnsiEsc
 "
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+function! CheckBackSpace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+\ coc#pum#visible() ? coc#pum#next(1):
+\ CheckBackSpace() ? "\<Tab>" :
+\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -334,6 +357,12 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -344,9 +373,15 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Refactoring
+nmap <leader>rf <Plug>(coc-refactor)
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-inoremap Tab <Plug>(parinfer-tab)
+" inoremap Tab <Plug>(parinfer-tab)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -359,7 +394,7 @@ function! s:show_documentation()
 endfunction
 
 let $NVIM_COC_LOG_LEVEL = 'debug'
-let g:coc_default_semantic_highlight_groups = 1
+" let g:coc_default_semantic_highlight_groups = 1
 
 
 "

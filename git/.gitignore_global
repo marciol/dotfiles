@@ -29,3 +29,8 @@ __MACOSX
 conjure.log
 .DS_Store
 .lsp/
+*.pem
+.terraform/
+.terraform.lock.hcl
+.pre-commit-config.yaml
+src/scratch.clj

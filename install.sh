@@ -71,5 +71,5 @@ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin-add clojerl https://github.com/clojerl/asdf-clojerl.git
 asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
 asdf plugin-add terragrunt https://github.com/lotia/asdf-terragrunt
-asdf plugin-add awscli https://github.com/MetricMike/asdf-awscli.git
+asdf plugin-add https://github.com/MetricMike/asdf-awscli.git
 asdf install
