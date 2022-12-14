@@ -5,3 +5,6 @@
 [init]
 	defaultBranch = main
 	templateDir = /Users/marciol/.git-template
+[user]
+	name = Marcio Faria
+	email = marcitolopes@gmail.com
