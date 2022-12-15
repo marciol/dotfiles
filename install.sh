@@ -48,6 +48,11 @@ echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --key-bindings --completion --no-update-rc
 
+# Plug
+echo "Installing plug"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 # Rust
 echo "Installing rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -73,3 +78,7 @@ asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
 asdf plugin-add terragrunt https://github.com/lotia/asdf-terragrunt
 asdf plugin-add https://github.com/MetricMike/asdf-awscli.git
 asdf install
+
+# Neovim setup
+echo "Installing NeoVim Plug"
+nvim +PlugInstall +qall
