@@ -29,6 +29,7 @@ stow nvim
 stow ruby
 stow ssh
 stow brew
+stow sublime
 
 popd
 

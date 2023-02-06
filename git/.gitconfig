@@ -8,3 +8,5 @@
 [user]
 	name = Marcio Faria
 	email = marcitolopes@gmail.com
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

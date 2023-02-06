@@ -152,7 +152,7 @@ let g:neoterm_auto_repl_cmd = 0
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
 
-  ensure_installed = { "clojure", "typescript" },
+  ensure_installed = { "clojure", "ruby", "typescript" },
   sync_install = false,
   auto_install = true,
 

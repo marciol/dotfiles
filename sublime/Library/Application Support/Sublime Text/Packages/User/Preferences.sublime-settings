@@ -1,0 +1,20 @@
+{
+	"font_size": 17,
+	"ignored_packages":
+	[
+		"Six",
+		"Vintage",
+		"Vintageous",
+	],
+	"vintageous_use_ctrl_keys": true,
+	"vintageous_i_escape_jj": true,
+	"neovintageous_build_version": 12700,
+	"color_scheme": "Alabaster.sublime-color-scheme",
+	"dark_color_scheme": "Mariana.sublime-color-scheme",
+	"light_color_scheme": "Breakers.sublime-color-scheme",
+	"theme": "Adaptive.sublime-theme",
+	"dark_theme": "Default Dark.sublime-theme",
+	"light_theme": "Default.sublime-theme",
+	"show_legacy_color_schemes": true,
+	"trim_trailing_white_space_on_save": "all",
+}

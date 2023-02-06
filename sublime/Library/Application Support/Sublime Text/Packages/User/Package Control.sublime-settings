@@ -1,0 +1,23 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Alabaster Color Scheme",
+		"Color Scheme - Legacy",
+		"EditorConfig",
+		"Elixir",
+		"LSP",
+		"Markdown Table Formatter",
+		"MarkdownEditing",
+		"MarkdownPreview",
+		"NeoVintageous",
+		"Package Control",
+		"Parinfer",
+		"PlantUmlDiagrams",
+		"Theme - Legacy",
+		"Tutkain",
+	],
+}
