@@ -4,58 +4,818 @@
         "command": "goto_definition"
     },
 
-     // Evaluate
-    {"keys": ["ctrl+enter"],
-     "command": "clojure_sublimed_eval",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Evaluate Buffer
-    {"keys": ["ctrl+b"],
-     "command": "clojure_sublimed_eval_buffer",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Interrupt Pending Evaluations
-    {"keys": ["ctrl+c"],
-     "command": "clojure_sublimed_interrupt_eval",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Toggle Info
-    {"keys": ["ctrl+i"],
-     "command": "clojure_sublimed_toggle_info",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Clear Evaluation Results
-    {"keys": ["ctrl+l"],
-     "command": "clojure_sublimed_clear_evals",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Extras
-    // Toggle Stacktrace
-    {"keys": ["ctrl+e"],
-     "command": "clojure_sublimed_toggle_trace",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Toggle Symbol Info
-    {"keys": ["ctrl+d"],
-     "command": "clojure_sublimed_toggle_symbol",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Copy Evaluation Result
-    {"keys": ["super+c"],
-     "command": "clojure_sublimed_copy",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Require Namespace
-    {"keys": ["ctrl+r"],
-     "command": "clojure_sublimed_require_namespace",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Reindent Lines
-    {"keys": ["ctrl+f"],
-     "command": "clojure_sublimed_reindent_lines",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Reindent Buffer
-    {"keys": ["ctrl+shift+f"],
-     "command": "clojure_sublimed_reindent_buffer",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
-    // Insert New Line
-    {"keys": ["enter"],
-     "command": "clojure_sublimed_insert_newline",
-     "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
-                 {"key": "auto_complete_visible", "operator": "equal", "operand": false},
-                 {"key": "panel_has_focus", "operator": "equal", "operand": false}]},
-    {"keys": ["ctrl+t"],
-     "command": "clojure_sublimed_eval_code",
-      "args": {"code": "(clojure.test/run-all-tests)"}},
+    // // Evaluate
+    // {"keys": ["ctrl+enter"],
+    //  "command": "clojure_sublimed_eval",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Evaluate Buffer
+    // {"keys": ["ctrl+b"],
+    //  "command": "clojure_sublimed_eval_buffer",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Interrupt Pending Evaluations
+    // {"keys": ["ctrl+c"],
+    //  "command": "clojure_sublimed_interrupt_eval",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Toggle Info
+    // {"keys": ["ctrl+i"],
+    //  "command": "clojure_sublimed_toggle_info",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Clear Evaluation Results
+    // {"keys": ["ctrl+l"],
+    //  "command": "clojure_sublimed_clear_evals",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Extras
+    // // Toggle Stacktrace
+    // {"keys": ["ctrl+e"],
+    //  "command": "clojure_sublimed_toggle_trace",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Toggle Symbol Info
+    // {"keys": ["ctrl+d"],
+    //  "command": "clojure_sublimed_toggle_symbol",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Copy Evaluation Result
+    // {"keys": ["super+c"],
+    //  "command": "clojure_sublimed_copy",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Require Namespace
+    // {"keys": ["ctrl+r"],
+    //  "command": "clojure_sublimed_require_namespace",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Reindent Lines
+    // {"keys": ["ctrl+f"],
+    //  "command": "clojure_sublimed_reindent_lines",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Reindent Buffer
+    // {"keys": ["ctrl+shift+f"],
+    //  "command": "clojure_sublimed_reindent_buffer",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]},
+    // // Insert New Line
+    // {"keys": ["enter"],
+    //  "command": "clojure_sublimed_insert_newline",
+    //  "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
+    //              {"key": "auto_complete_visible", "operator": "equal", "operand": false},
+    //              {"key": "panel_has_focus", "operator": "equal", "operand": false}]},
+    // {"keys": ["ctrl+t"],
+    //  "command": "clojure_sublimed_eval_code",
+    //   "args": {"code": "(clojure.test/run-all-tests)"}},
+
+
+    // This is a set of example key bindings for Tutkain.
+    //
+    // Tutkain comes with NO key bindings enabled by default. To start using key bindings,
+    // copy the key binding definitions in this file into your own key binding settings.
+    //
+    // NOTE: This set of example key bindings is NOT guaranteed to be stable. They may change
+    // without notice.
+
+    // BEGIN RECOMMENDED DEFAULTS
+
+    // Automatically indent your code when you press Enter.
+//     {
+//       "keys": ["enter"],
+//       "command": "tutkain_insert_newline",
+//       "context": [
+//         {
+//           "key": "selector",
+//           "operator": "equal",
+//           "operand": "source.edn | source.clojure"
+//         },
+//         {
+//           "key": "auto_complete_visible",
+//           "operator": "equal",
+//           "operand": false
+//         },
+//         {
+//           "key": "panel_has_focus",
+//           "operator": "equal",
+//           "operand": false
+//         },
+//       ]
+//     },
+
+//     // Key bindings for automatically keeping your parentheses balanced. You
+//     // probably want these unless you're using another package that does this
+//     // for you.
+//     {
+//         "keys": ["("],
+//         "command": "tutkain_paredit_open_round",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": ["["],
+//         "command": "tutkain_paredit_open_square",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": ["{"],
+//         "command": "tutkain_paredit_open_curly",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": [")"],
+//         "command": "tutkain_paredit_close_round",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": ["]"],
+//         "command": "tutkain_paredit_close_square",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": ["}"],
+//         "command": "tutkain_paredit_close_curly",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": ["\""],
+//         "command": "tutkain_paredit_double_quote",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": ["delete"],
+//         "command": "tutkain_paredit_forward_delete",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": ["backspace"],
+//         "command": "tutkain_paredit_backward_delete",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     {
+//         "keys": [";"],
+//         "command": "tutkain_paredit_semicolon",
+//         "context": [
+//           {
+//             "key": "selector",
+//             "operator": "equal",
+//             "operand": "source.edn | source.clojure"
+//           }
+//         ]
+//     },
+
+//     // The default binding for cancel_build is ctrl+c, which interferes with the key bindings
+//     // coming up next.
+//     {
+//         "keys": ["ctrl+alt+c"],
+//         "command": "cancel_build"
+//     },
+
+//     // Connect to a socket server.
+//     {
+//         "keys": ["ctrl+c", "ctrl+x"],
+//         "command": "tutkain_connect",
+//         "args": {"host": "localhost", "output": "panel"}
+//     },
+
+//     // Disconnect from a socket server.
+//     {
+//         "keys": ["ctrl+c", "ctrl+d"],
+//         "command": "tutkain_disconnect"
+//     },
+
+//     // Evaluate the ns forms in the current view.
+//     {
+//         "keys": ["ctrl+c", "ctrl+n"],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "ns"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Evaluate the currently active view (Clojure only).
+//     {
+//         "keys": ["ctrl+c", "ctrl+k"],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "view"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Evaluate current selections or the outermost form.
+//     //
+//     // If the outermost form is a (comment), instead of the outermost form, evaluate the form that's
+//     // one level inward.
+//     //
+//     // For example, given:
+//     //
+//     //     (comment
+//     //       (inc 1))
+//     //
+//     // If your cursor is at the open parenthesis of (inc 1), evaluate (inc 1) instead of
+//     // (comment (inc 1)).
+//     {
+//         "keys": ["ctrl+c", "ctrl+c"],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "outermost", "ignore": ["comment"]},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Evaluate current selections or the innermost form.
+//     {
+//         "keys": ["ctrl+c", "ctrl+e"],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "innermost"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Print the stack trace of the last exception.
+//     {
+//         "keys": ["ctrl+c", "ctrl++"],
+//         "command": "tutkain_evaluate",
+//         "args": {"code": "((requiring-resolve 'clojure.repl/pst) *e)"}
+//     },
+
+//     // Evaluate a form up to the point where your caret currently is.
+//     //
+//     // Useful when you want to evaluate a form whose head is a threading macro
+//     // (e.g. ->) only up to a certain point.
+//     //
+//     // For example, given (-> 1 inc dec), you can position your caret so that
+//     // it immediately follows inc, then evaluate up to that point. Tutkain will
+//     // evaluate (-> 1 inc) instead of (-> 1 inc dec).
+//     //
+//     // If your caret is not inside an S-expression, up_to_point evaluates
+//     // every top-level form up to that point.
+//     {
+//         "keys": ["ctrl+c", "ctrl+."],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "up_to_point"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Clear the currently active REPL view.
+//     {
+//         "keys": ["ctrl+c", "ctrl+z"],
+//         "command": "tutkain_clear_output_view"
+//     },
+
+//     // Evaluate the current view and run the clojure.test tests in the view.
+//     {
+//         "keys": ["ctrl+c", "ctrl+t"],
+//         "command": "tutkain_run_tests",
+//         "args": {"scope": "ns"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Evaluate the current view and run the clojure.test deftest under the cursor.
+//     {
+//         "keys": ["ctrl+c", "ctrl+v"],
+//         "command": "tutkain_run_tests",
+//         "args": {"scope": "var"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Show unsuccessful tests.
+//     //
+//     // After running tests, run this command to show a list of unsuccessful
+//     // tests (failures and errors) and navigate between them.
+//     {
+//         "keys": ["ctrl+c", "ctrl+u"],
+//         "command": "tutkain_show_unsuccessful_tests",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Interrupt any ongoing evaluation.
+//     {
+//         "keys": ["ctrl+c", "ctrl+r"],
+//         "command": "tutkain_interrupt_evaluation",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure - source.clojure.clojurescript"}]
+//     },
+
+//     // Open new scratch view.
+//     //
+//     // Scratch views are useful for experimenting on the REPL.
+//     {
+//         "keys": ["ctrl+c", "ctrl+s"],
+//         "command": "tutkain_new_scratch_view"
+//     },
+
+//     // Expand the current selection by one nesting level.
+//     //
+//     // For example, given:
+//     //
+//     //     (a (b (c :d e)))
+//     //
+//     // If you cursor is at the point that precedes ":d", expanding the selection once expands it to
+//     // cover :d. Expanding it once more expands it to cover (c :d e), then (b (c :d e)), and finally
+//     // (a (b (c :d e))).
+//     {
+//         "keys": ["super+e"],
+//         "command": "tutkain_expand_selection",
+//         "context": [
+//             {"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}
+//         ]
+//     },
+
+//     // Indent the outermost sexp at point.
+//     {
+//         "keys": ["tab"],
+//         "command": "tutkain_indent_sexp",
+//         "args": {"scope": "innermost"},
+//         "context": [
+//             {"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
+//             {"key": "auto_complete_visible", "operand": false},
+//             {"key": "has_next_field", "operand": false}
+//         ]
+//     },
+
+//     // Hard wrap a (doc)string or a multi-line comment to the given width.
+//     {
+//         "keys": ["super+l", "super+l"],
+//         "command": "tutkain_hard_wrap",
+//         "args": {"width": "78"},
+//         "context": [
+//             {"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
+//         ]
+//     },
+
+//     // Cycle collection type.
+//     //
+//     // For example, given:
+//     //
+//     //     (a b)
+//     //
+//     // If your cursor is at the point that precedes "a" and you run this command, the list becomes
+//     // a vector:
+//     //
+//     //     [a b]
+//     //
+//     // If you run it again, it becomes a map:
+//     //
+//     //     {a b}
+//     //
+//     // Then a set:
+//     //
+//     //     #{a b}
+//     {
+//         "keys": ["ctrl+super+c"],
+//         "command": "tutkain_cycle_collection_type",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     // Show information about the symbol or keyword under the cursor.
+//     //
+//     // If the view has multiple cursors, show information about the symbol or
+//     // keyword under the first cursor.
+//     //
+//     // Click the name of the symbol in the popup to go to the definition for
+//     // that symbol.
+//     {
+//         "keys": ["ctrl+c", "ctrl+f"],
+//         "command": "tutkain_show_information",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Goto definition.
+//     {
+//         "keys": ["ctrl+c", "ctrl+g"],
+//         "command": "tutkain_goto_definition",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Show output panel
+//     {
+//         "keys": ["ctrl+p", "ctrl+r"],
+//         "command": "show_panel",
+//         "args": {"panel": "output.tutkain.output_panel"}
+//     },
+
+//     // Hide output panel
+//     {
+//         "keys": ["ctrl+p", "ctrl+r"],
+//         "command": "hide_panel",
+//         "args": {"panel": "output.tutkain.output_panel"},
+//         "context": [{"key": "panel", "operand": "output.tutkain.output_panel"}]
+//     },
+
+//     // Open a split view with ClojureDocs examples for the symbol under the
+//     // caret.
+//     //
+//     // If there's no symbol under the caret, prompt the user for the symbol
+//     // instead.
+//     //
+//     // The first use requires an internet connection for downloading examples
+//     // from https://clojuredocs.org.
+//     {
+//         "keys": ["ctrl+p", "ctrl+x"],
+//         "command": "tutkain_show_clojuredocs_examples",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // END RECOMMENDED DEFAULTS
+
+//     // Evaluate the outermost form and show the result both in the REPL view
+//     // and inline, right after the evaluated form.
+//     {
+//         "keys": ["ctrl+c", "ctrl+a"],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "outermost", "inline_result": true},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Prompt for input and evaluate it in the "user" namespace.
+//     {
+//         "keys": ["ctrl+c", "ctrl+i"],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "input"}
+//     },
+
+//     // Print the name of the namespace you're currently in.
+//     {
+//         "keys": ["ctrl+c", "ctrl++"],
+//         "command": "tutkain_evaluate",
+//         "args": {"code": "(ns-name *ns*)"}
+//     },
+
+//     // Pretty-print the value of the form under the caret.
+//     {
+//         "keys": ["ctrl+p", "ctrl+p"],
+//         "command": "tutkain_evaluate",
+//         "args": {"code": "((requiring-resolve 'clojure.pprint/pprint) $0)", "scope": "form"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Inspect the return value of the outermost S-expression under the caret.
+//     {
+//         "keys": ["ctrl+p", "ctrl+i"],
+//         "command": "tutkain_evaluate",
+//         "args": {"code": "((requiring-resolve 'clojure.inspector/inspect) $0)", "scope": "outermost"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Macroexpand the innermost S-expression under the caret.
+//     {
+//         "keys": ["ctrl+p", "ctrl+m"],
+//         "command": "tutkain_evaluate",
+//         "args": {"code": "(macroexpand-1 '$0)", "scope": "innermost"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Switch to the cljs.user namespace (ClojureScript).
+//     {
+//         "keys": ["ctrl+p", "ctrl+u"],
+//         "command": "tutkain_evaluate",
+//         "args": {"code": "(in-ns 'cljs.user)"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure.clojurescript"}]
+//     },
+
+//     // Switch to the user namespace (Clojure).
+//     {
+//         "keys": ["ctrl+p", "ctrl+u"],
+//         "command": "tutkain_evaluate",
+//         "args": {"code": "(in-ns 'user)"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure - source.clojure.clojurescript"}]
+//     },
+
+//     // Prompt for a value for the symbol under the first caret and def it.
+//     {
+//         "keys": ["ctrl+p", "ctrl+e"],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "input", "snippet": "(def $FORMS[0] $1)$0"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}],
+//     },
+
+//     // Prompt for a namespace to switch to.
+//     {
+//         "keys": ["ctrl+p", "ctrl+n"],
+//         "command": "tutkain_evaluate",
+//         "args": {"scope": "input", "snippet": "(in-ns '$1)$0"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}],
+//     },
+
+//     // Evaluate the form given as an argument.
+//     {
+//         "keys": ["f19"],
+//         "command": "tutkain_evaluate",
+//         "args": {"ns": "user", "code": "(reset)"},
+//     },
+
+//     {
+//         "keys": ["alt+tab"],
+//         "command": "tutkain_indent_sexp",
+//         "args": {"scope": "outermost"},
+//         "context": [
+//             {"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
+//             {"key": "auto_complete_visible", "operand": false},
+//             {"key": "has_next_field", "operand": false}
+//         ]
+//     },
+
+//     // Show information for the head element of the current S-expression (a
+//     // function).
+//     //
+//     // Starting from the current caret position, walk backward until the first
+//     // form that matches the variable.function scope and look up the
+//     // information for that element.
+//     {
+//         "keys": ["ctrl+c", "ctrl+h"],
+//         "command": "tutkain_show_information",
+//         "args": {"selector": "variable.function", "seek_backward": true},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // If your caret is on a local, select every instance of that local.
+//     //
+//     // Clojure only, and only if clojure.tools.analyzer.jvm is in the classpath.
+//     {
+//         "keys": ["ctrl+x", "ctrl+r"],
+//         "command": "tutkain_select_locals"
+//     },
+
+//     // Given a string or a regular expression, show a list of all vars whose name
+//     // or docstring match the input.
+//     //
+//     // Select an item in the list to goto definition. Clojure only.
+//     {
+//         "keys": ["ctrl+p", "ctrl+a"],
+//         "command": "tutkain_apropos"
+//     },
+
+//     // Open a user interface for exploring the stack trace of the most recent
+//     // exception (*e).
+//     //
+//     // Currently only useful for exceptions thrown at the REPL. Cannot be used
+//     // with exceptions arising e.g. from running Tutkain: Run Test.
+//     {
+//         "keys": ["ctrl+c", "ctrl+0"],
+//         "command": "tutkain_explore_stack_trace"
+//     },
+
+//     // Mark a form to (repeatedly) evaluate it later via Tutkain: Evaluate >
+//     // Mark.
+//     {
+//         "keys": ["ctrl+w", "ctrl+a"],
+//         "command": "tutkain_mark_form",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.clojure"}]
+//     },
+
+//     // Paredit commands
+//     //
+//     // Documentation TBD.
+//     //
+//     // In the meantime, see: http://danmidwood.com/content/2014/11/21/animated-paredit.html
+//     {
+//         "keys": ["E"],
+//         "command": "tutkain_paredit_forward",
+//         "context": [
+//             {"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
+//             {"key": "vi_command_mode_aware"},
+//         ]
+//     },
+
+//     {
+//         "keys": ["L"],
+//         "command": "multicommand",
+//         "args": {
+//            "commands": [
+//                 {
+//                    "command": "tutkain_paredit_forward"
+//                 },
+//                 {
+//                    "command": "tutkain_paredit_forward"
+//                 },
+//                 {
+//                    "command": "tutkain_paredit_backward"
+//                 }
+//            ]
+//         },
+//     },
+
+//     {
+//         "keys": ["alt+shift+right"],
+//         "command": "tutkain_paredit_forward",
+//         "args": {"extend": true},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["H"],
+//         "command": "tutkain_paredit_backward",
+//         "context": [
+//             {"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
+//             {"key": "vi_command_mode_aware"},
+//         ]
+//     },
+
+//     {
+//         "keys": ["J"],
+//         "command": "tutkain_paredit_forward_down",
+//         "context": [
+//             {"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
+//             {"key": "vi_command_mode_aware"},
+//         ]
+//     },
+
+//     {
+//         "keys": ["K"],
+//         "command": "tutkain_paredit_backward_up",
+//         "context": [
+//             {"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"},
+//             {"key": "vi_command_mode_aware"},
+//         ]
+//     },
+
+//     {
+//         "keys": ["super+shift+k"],
+//         "command": "tutkain_paredit_forward_slurp",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["alt+shift+j"],
+//         "command": "tutkain_paredit_backward_slurp",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["super+shift+j"],
+//         "command": "tutkain_paredit_forward_barf",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["alt+shift+k"],
+//         "command": "tutkain_paredit_backward_barf",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["super+shift+9"],
+//         "command": "tutkain_paredit_wrap_round",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["super+shift+8"],
+//         "command": "tutkain_paredit_wrap_square",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["super+shift+0"],
+//         "command": "tutkain_paredit_wrap_curly",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["alt+r"],
+//         "command": "tutkain_paredit_raise_sexp",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["alt+s"],
+//         "command": "tutkain_paredit_splice_sexp",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["alt+;"],
+//         "command": "tutkain_paredit_comment_dwim",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+s", "ctrl+left"],
+//         "command": "tutkain_paredit_splice_sexp_killing_backward",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+s", "ctrl+right"],
+//         "command": "tutkain_paredit_splice_sexp_killing_forward",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+backspace"],
+//         "command": "tutkain_paredit_backward_kill_form",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+delete"],
+//         "command": "tutkain_paredit_forward_kill_form",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+c", "ctrl+up"],
+//         "command": "tutkain_paredit_backward_move_form",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+c", "ctrl+down"],
+//         "command": "tutkain_paredit_forward_move_form",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+x", "ctrl+z"],
+//         "command": "tutkain_paredit_thread_first",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+x", "ctrl+x"],
+//         "command": "tutkain_paredit_thread_last",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["ctrl+z", "ctrl+x"],
+//         "command": "tutkain_paredit_unthread",
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["super+alt+shift+-"],
+//         "command": "tutkain_discard_undiscard_sexp",
+//         "args": {"scope": "innermost"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     {
+//         "keys": ["super+shift+-"],
+//         "command": "tutkain_discard_undiscard_sexp",
+//         "args": {"scope": "outermost"},
+//         "context": [{"key": "selector", "operator": "equal", "operand": "source.edn | source.clojure"}]
+//     },
+
+//     // Show tap panel
+//     {
+//         "keys": ["ctrl+c", "ctrl+p"],
+//         "command": "show_panel",
+//         "args": {"panel": "output.tutkain.tap_panel"}
+//     },
+
+//     // Hide tap panel
+//     {
+//         "keys": ["ctrl+c", "ctrl+p"],
+//         "command": "hide_panel",
+//         "args": {"panel": "output.tutkain.tap_panel"},
+//         "context": [{"key": "panel", "operand": "output.tutkain.tap_panel"}]
+//     },
 ]
