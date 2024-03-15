@@ -1,8 +1,10 @@
 #!/bin/bash
 set -u
 
-echo "Installing xcode tools"
-xcode-select --install
+if [ "$(uname -s)" == "Darwin" ]; then
+  echo "Installing xcode tools"
+  xcode-select --install
+fi
 
 # Homebrew
 echo "Installing homebrew and stow"
