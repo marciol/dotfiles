@@ -12,7 +12,7 @@ echo "Installing homebrew and stow"
 if [ "$(uname -s)" == "Darwin" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 else
-  eval "$(/home/linuxbrew/bin/brew shellenv)" 
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 
 fi
 brew install stow git
 
