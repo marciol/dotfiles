@@ -9,7 +9,11 @@ fi
 # Homebrew
 echo "Installing homebrew and stow"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ "$(uname -s)" == "Darwin" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/home/linuxbrew/bin/brew shellenv)" 
+fi
 brew install stow git
 
 # Dotfiles
