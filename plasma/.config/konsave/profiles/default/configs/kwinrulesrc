@@ -15,6 +15,20 @@ desktopfilerule=3
 wmclass=spotify
 wmclassmatch=2
 
+[3]
+Description=Firefox Icon
+desktopfile=firefox-esr
+desktopfilerule=3
+wmclass=firefox
+wmclassmatch=2
+
+[3b25df74-db9e-457c-90f6-0b48befb4a50]
+Description=Firefox Icon
+desktopfile=firefox
+desktopfilerule=3
+wmclass=firefox
+wmclassmatch=2
+
 [6e5ec14b-5234-4e34-912c-809d418aaab7]
 Description=Application settings for Slack
 wmclass=slack
@@ -38,8 +52,8 @@ wmclasscomplete=true
 wmclassmatch=1
 
 [General]
-count=2
-rules=1,2
+count=3
+rules=1,2,3
 
 [a52ec0e3-4d3f-452f-ae78-efa9820c3f4c]
 Description=Application settings for google-chrome
