@@ -6,7 +6,7 @@ NaturalScroll=false
 
 [Libinput][1739][52972][VEN_06CB:00 06CB:CEEC Touchpad]
 NaturalScroll=true
-ScrollFactor=0.3
+ScrollFactor=2
 TapToClick=true
 
 [Tmp]
