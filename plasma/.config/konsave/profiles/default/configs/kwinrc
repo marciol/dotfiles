@@ -30,3 +30,6 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 
 [Wayland]
 InputMethod[$e]=/usr/share/applications/org.fcitx.Fcitx5.desktop
+
+[Xwayland]
+Scale=2.5

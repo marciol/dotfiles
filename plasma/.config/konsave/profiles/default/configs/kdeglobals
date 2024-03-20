@@ -173,7 +173,6 @@ View Style=DetailTree
 
 [KScreen]
 ScreenScaleFactors=eDP-1=1;HDMI-A-1=1;
-XwaylandClientsScale=false
 
 [Shortcuts]
 Activate Next Tab=Ctrl+]; Ctrl+}; Ctrl+PgDown
