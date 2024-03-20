@@ -12,7 +12,7 @@ echo "Installing homebrew and stow"
 if [ "$(uname -s)" == "Darwin" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 else
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 brew install stow git
 
@@ -36,6 +36,15 @@ stow ruby
 stow ssh
 stow brew
 stow sublime
+
+if [ "$(uname -s)" == "Linux" ]; then
+  # Fix keyboard
+  stow plasma
+  # Fix icons
+  # Copy from
+  # /usr/share/applications/*.desktop
+  stow kde-desktop
+fi
 
 popd
 
@@ -84,8 +93,10 @@ asdf plugin-add clojerl https://github.com/clojerl/asdf-clojerl.git
 asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
 asdf plugin-add terragrunt https://github.com/lotia/asdf-terragrunt
 asdf plugin-add https://github.com/MetricMike/asdf-awscli.git
+asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
 asdf install
 
 # Neovim setup
 echo "Installing NeoVim Plug"
 nvim +PlugInstall +qall
+

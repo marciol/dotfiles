@@ -117,7 +117,7 @@ set background=light
 "   \     }
 "   \   }
 "   \ }
-colorscheme Papercolor
+colorscheme PaperColor
 
 "
 " TERMINAL

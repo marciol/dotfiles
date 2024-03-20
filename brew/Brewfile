@@ -26,7 +26,6 @@ brew "clojure-lsp/brew/clojure-lsp-native"
 brew "clojure/tools/clojure"
 brew "hashicorp/tap/terraform"
 brew "bash-completion@2"
-brew "emacs-plus@28", args: ["with-debug", "with-mailutils", "with-xwidgets", "with-native-comp"]
 cask "aws-vault"
 cask "dbeaver-community"
 cask "docker"
