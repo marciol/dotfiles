@@ -1,0 +1,61 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum,kwinrules.upd:use-virtual-desktop-ids
+
+[1]
+Description=Slack Icon
+desktopfile=slack
+desktopfilerule=3
+wmclass=slack
+wmclassmatch=2
+
+[2]
+Description=Spotify Icon
+desktopfile=spotify
+desktopfilerule=3
+wmclass=spotify
+wmclassmatch=2
+
+[6e5ec14b-5234-4e34-912c-809d418aaab7]
+Description=Application settings for Slack
+wmclass=slack
+wmclasscomplete=true
+wmclassmatch=2
+
+[76304cbf-f267-42c2-8204-872fa23378c7]
+Description=Window settings for Slack
+title=Channel: dev-flow - Sticker Mule - Slack
+types=1
+wmclass=slack
+wmclasscomplete=true
+wmclassmatch=2
+
+[9a92c2e7-3521-4a59-b16e-72bd8ccd2541]
+Description=Application settings for Slack
+desktopfile=Slack
+desktopfilerule=3
+wmclass=slack Slack
+wmclasscomplete=true
+wmclassmatch=1
+
+[General]
+count=2
+rules=1,2
+
+[a52ec0e3-4d3f-452f-ae78-efa9820c3f4c]
+Description=Application settings for google-chrome
+clientmachine=localhost
+wmclass=google-chrome
+wmclassmatch=1
+
+[d3eb2faa-2751-42be-bcbb-b5be9a03e785]
+Description=Spotify Icon
+desktopfile=spotify
+desktopfilerule=3
+wmclass=spotify
+wmclassmatch=2
+
+[fabe4596-59c1-41fd-ad9f-f4cf03903fba]
+Description=New window settings
+desktopfile=Slack
+desktopfilerule=3
+wmclassmatch=1

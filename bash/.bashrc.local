@@ -1,9 +1,11 @@
 # Locale
 export LC_ALL=en_US.UTF-8
+export LANGUAGE=en_US:en
 
 # Local bin
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.venv/bin
 
 # brew
 arch_name="$(uname -s)"

@@ -100,3 +100,7 @@ asdf install
 echo "Installing NeoVim Plug"
 nvim +PlugInstall +qall
 
+# Setup KDE configs
+python3 -m venv ~/.venv
+~/.venv/bin/pip install setuptools
+~/.venv/bin/pip install konsave
