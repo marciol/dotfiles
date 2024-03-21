@@ -28,8 +28,5 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][e28d511e-d27b-5b75-8da7-f84272ae0692]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
-[Wayland]
-InputMethod[$e]=/usr/share/applications/org.fcitx.Fcitx5.desktop
-
 [Xwayland]
-Scale=2.5
+Scale=1.5
