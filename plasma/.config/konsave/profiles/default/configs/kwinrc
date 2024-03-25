@@ -6,9 +6,13 @@ Id_1=f7dae816-c924-4bc4-bd2d-a9f9dce6f3e8
 Number=1
 Rows=1
 
+[ModifierOnlyShortcuts]
+Meta=
+
 [Plugins]
 focusonattentionrequestEnabled=true
 kwin4_effect_scaleEnabled=false
+toshy-dbus-notifyactivewindowEnabled=true
 
 [TabBox]
 ApplicationsMode=1
@@ -28,5 +32,8 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][e28d511e-d27b-5b75-8da7-f84272ae0692]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Wayland]
+InputMethod[$e]=/usr/share/applications/org.fcitx.Fcitx5.desktop
+
 [Xwayland]
-Scale=1.5
+Scale=2.5

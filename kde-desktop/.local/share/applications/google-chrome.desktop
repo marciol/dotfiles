@@ -105,8 +105,7 @@ Comment[vi]=Truy cập Internet
 Comment[zh_CN]=访问互联网
 Comment[zh_HK]=連線到網際網路
 Comment[zh_TW]=連線到網際網路
-# Exec=/usr/bin/google-chrome-stable --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime %U
-Exec=/usr/bin/google-chrome-stable %U
+Exec=/usr/bin/google-chrome-stable --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime %U
 StartupNotify=true
 Terminal=false
 Icon=google-chrome
@@ -167,8 +166,7 @@ Name[uk]=Нове вікно
 Name[vi]=Cửa sổ Mới
 Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
-# Exec=/usr/bin/google-chrome-stable --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime
-Exec=/usr/bin/google-chrome-stable
+Exec=/usr/bin/google-chrome-stable --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime
 
 [Desktop Action new-private-window]
 Name=New Incognito Window
@@ -220,5 +218,4 @@ Name[uk]=Нове вікно в режимі анонімного перегля
 Name[vi]=Cửa sổ ẩn danh mới
 Name[zh_CN]=新建隐身窗口
 Name[zh_TW]=新增無痕式視窗
-# Exec=/usr/bin/google-chrome-stable --incognito --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime
-Exec=/usr/bin/google-chrome-stable --incognito
+Exec=/usr/bin/google-chrome-stable --incognito --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime

@@ -1,6 +1,7 @@
 # Locale
 export LC_ALL=en_US.UTF-8
 export LANGUAGE=en_US:en
+export LC_CTYPE=pt_BR.UTF-8
 
 # History
 HISTSIZE=-1
@@ -151,3 +152,4 @@ alias sandbox-sh="aws-role-sh sandbox"
 alias staging-sh="aws-role-sh staging"
 alias testing-sh="aws-role-sh testing"
 alias dc="docker compose"
+alias code="/usr/bin/code --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime"

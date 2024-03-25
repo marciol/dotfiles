@@ -1,10 +1,10 @@
 [core]
-	excludesfile = /Users/marciol/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [pull]
 	rebase = true
 [init]
 	defaultBranch = main
-	templateDir = /Users/marciol/.git-template
+	templateDir = ~/.git-template
 [user]
 	name = Marcio Faria
 	email = marcitolopes@gmail.com
