@@ -91,7 +91,7 @@ set expandtab               " Insert spaces when TAB is pressed.
 set tabstop=2               " Render TABs using this many spaces.
 set shiftwidth=2            " Indentation amount for < and > commands.
 set mouse=a                 " Set mouse on terminal
-set clipboard=unnamedplus   " Integrate clipboard with yank action
+set clipboard=unnamed,unnamedplus   " Integrate clipboard with yank action
 set splitbelow              " Horizontal split goes below
 set splitright              " Vertical split goes right
 set colorcolumn=80

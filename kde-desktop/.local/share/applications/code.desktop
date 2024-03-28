@@ -2,8 +2,9 @@
 Name=Visual Studio Code
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=/usr/share/code/code --unity-launch %F --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime
 # Exec=/usr/share/code/code --unity-launch %F
+# Exec=/usr/share/code/code --unity-launch --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime %F
+Exec=/usr/share/code/code --unity-launch --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0 %F
 Icon=vscode
 Type=Application
 StartupNotify=false
@@ -24,6 +25,7 @@ Name[ko]=새 빈 창
 Name[ru]=Новое пустое окно
 Name[zh_CN]=新建空窗口
 Name[zh_TW]=開新空視窗
-Exec=/usr/share/code/code --new-window %F --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime
 # Exec=/usr/share/code/code --new-window %F
+# Exec=/usr/share/code/code --new-window --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime %F
+Exec=/usr/share/code/code --new-window --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0 %F
 Icon=vscode
