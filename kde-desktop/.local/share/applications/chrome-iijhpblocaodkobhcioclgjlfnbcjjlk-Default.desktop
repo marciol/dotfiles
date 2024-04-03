@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=1Password for Ferreira Faria
+Exec=/opt/google/chrome-beta/google-chrome-beta --profile-directory=Default --app-id=iijhpblocaodkobhcioclgjlfnbcjjlk
+Icon=chrome-iijhpblocaodkobhcioclgjlfnbcjjlk-Default
+StartupWMClass=crx_iijhpblocaodkobhcioclgjlfnbcjjlk

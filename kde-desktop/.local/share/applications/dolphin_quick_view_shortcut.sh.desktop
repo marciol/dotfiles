@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=/home/marciol/.config/quick_view/dolphin_quick_view_shortcut.sh
+Name=/home/marciol/.config/quick_view/dolphin_quick_view_shortcut.sh
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true

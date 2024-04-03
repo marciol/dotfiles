@@ -146,10 +146,33 @@ function aws-role-sh() {
 	aws-vault exec $1 -- bash
 }
 
+function backup_deb {
+  sudo dpkg --get-selections > ~/.dotfiles/debian/Package.list
+  cp /etc/apt/sources.list ~/.dotfiles/debian/sources.list
+  cp -R /etc/apt/sources.list.d ~/.dotfiles/debian/
+  sudo apt-key exportall > ~/.dotfiles/debian/Repo.keys
+  cp -R /etc/apt/keyrings ~/.dotfiles/debian/etc/apt
+  cp -R /usr/share/keyrings ~/.dotfiles/debian/usr/share
+}
+
+function restore_deb {
+  sudo apt-key add ~/.dotfiles/debian/Repo.keys
+  sudo cp ~/.dotfiles/debian/sources.list /etc/apt/sources.list
+  sudo cp -R ~/.dotfiles/debian/sources.list.d /etc/apt/sources.list.d
+  sudo apt update
+  sudo apt install dselect
+  sudo dpkg --set-selections < ~/.dotfiles/debian/Package.list
+  sudo apt dselect-upgrade -y
+  sudo cp -R ~/.dotfiles/debian/etc/apt/keyrings /etc/apt/keyrings
+  sudo cp -R ~/.dotfiles/debian/usr/share/keyrings /usr/share/keyrings
+}
+
 # Ensure that the right permissions for various AWS roles are present.
 alias terraform-sh="aws-role-sh terraform-testing"
 alias sandbox-sh="aws-role-sh sandbox"
 alias staging-sh="aws-role-sh staging"
 alias testing-sh="aws-role-sh testing"
 alias dc="docker compose"
-alias code="/usr/bin/code --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --enable-wayland-ime"
+alias code="/usr/bin/code --unity-launch --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0"
+
+alias reload-touchpad="sudo modprobe -r hid-multitouch && sudo modprobe hid-multitouch"

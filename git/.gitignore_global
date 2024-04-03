@@ -34,3 +34,4 @@ conjure.log
 .terraform.lock.hcl
 .pre-commit-config.yaml
 src/scratch.clj
+.vscode/
