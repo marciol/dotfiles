@@ -1,0 +1,9 @@
+[submodule "oss/Projects/OSS/toshy"]
+	path = oss/Projects/OSS/toshy
+	url = git@github.com:marciol/toshy.git
+[submodule "oss/Projects/OSS/vscode-open-in-github"]
+	path = oss/Projects/OSS/vscode-open-in-github
+	url = git@github.com:marciol/vscode-open-in-github.git
+[submodule "oss/Projects/OSS/systemd-lock-handler"]
+	path = oss/Projects/OSS/systemd-lock-handler
+	url = https://github.com/mogorman/systemd-lock-handler.git

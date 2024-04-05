@@ -105,8 +105,8 @@ Comment[vi]=Truy cập Internet
 Comment[zh_CN]=访问互联网
 Comment[zh_HK]=連線到網際網路
 Comment[zh_TW]=連線到網際網路
-# Exec=/usr/bin/google-chrome-stable --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime %U
-Exec=/usr/bin/google-chrome-beta --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0 %U
+Exec=/usr/bin/google-chrome-stable --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime %U
+# Exec=/usr/bin/google-chrome-beta --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0 %U
 # Exec=/usr/bin/google-chrome-stable %U
 StartupNotify=true
 Terminal=false
@@ -168,8 +168,8 @@ Name[uk]=Нове вікно
 Name[vi]=Cửa sổ Mới
 Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
-# Exec=/usr/bin/google-chrome-stable --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime
-Exec=/usr/bin/google-chrome-beta --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0
+Exec=/usr/bin/google-chrome-stable --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime
+# Exec=/usr/bin/google-chrome-beta --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0
 # Exec=/usr/bin/google-chrome-stable
 
 [Desktop Action new-private-window]
@@ -222,6 +222,6 @@ Name[uk]=Нове вікно в режимі анонімного перегля
 Name[vi]=Cửa sổ ẩn danh mới
 Name[zh_CN]=新建隐身窗口
 Name[zh_TW]=新增無痕式視窗
-# Exec=/usr/bin/google-chrome-stable --incognito --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime
-Exec=/usr/bin/google-chrome-beta --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0 --incognito
+Exec=/usr/bin/google-chrome-stable --incognito --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-wayland-ime
+# Exec=/usr/bin/google-chrome-beta --ozone-platform=wayland --enable-wayland-ime --ignore-gpu-blocklist --disable-gpu-driver-bug-workarounds --enable-gpu-rasterization --enable-unsafe-webgpu --enable-zero-copy --enable-drdc --enable-webgl-draft-extensions --enable-features=WaylandWindowDecorations,Vulkan,UseSkiaRendererer,VaapiVideoDecoder --use-vulkan --canvas-oop-rasterization --enable-webgpu-developer-features --origin-trial-enabled-features=WebGPU --test-type --v=0 --incognito
 # Exec=/usr/bin/google-chrome-stable --incognito

@@ -1,0 +1,12 @@
+[Unit]
+Description=Lock D-Bus Monitor Service
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+[Service]
+ExecStart=/bin/bash -c '$HOME/bin/lock-monitor.sh'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
